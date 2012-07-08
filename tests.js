@@ -1,3 +1,5 @@
+/* lloyd|2012|http://wtfpl.org */
+
 const gobbledygook = require('./');
 
 const tests = [
