@@ -1,0 +1,18 @@
+{
+  "author": "Lloyd Hilaiel <lloyd@hilaiel.com> (http://lloyd.io)",
+  "name": "gobbledygook",
+  "description": "A localization debugging tool that translates strings into legible gobbledygook.  In javascript.",
+  "version": "0.0.1",
+  "homepage": "https://github.com/lloyd/gobbledygook",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lloyd/gobbledygook.git"
+  },
+  "main": "./include.js",
+  "engines": {
+    "node": ">=0.6.0"
+  },
+  "scripts": {
+    "test": "node tests"
+  }
+}
