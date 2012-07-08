@@ -1,3 +1,5 @@
+/* lloyd|2012|http://wtfpl.org */
+
 // This file contains a persona-specific "fake translation" implementation.
 //
 // Fake translation is the process of agorithmically translating text into
@@ -110,24 +112,8 @@ function translateToks(toks) {
 }
 
 // translate a string
-exports.translate = function(str) {
+module.exports = function(str) {
   var toks = tokenize(str);
   translateToks(toks);
   return stringify(toks);
 };
-
-var tests = [
-  "I LOVE YOU",
-  "%s uses Persona to sign you in!",
-  "Please close this window, <a %s>enable cookies</a> and try again",
-  "Please close this window, <a %(cookieLink)>enable <b>super dooper %(persona)</b> cookies</a> and try again",
-  "%(aWebsite) uses Persona to sign you in!"
-];
-
-console.log(translateString("Please close this window, <a %(cookieLink)>enable <b>super dooper %(persona)</b> cookies</a> and try again"));
-
-tests.forEach(function(t) {
-  console.log('>', t);
-  console.log('T', tokenize(t));
-  console.log('<', exports.translate(t));
-});
