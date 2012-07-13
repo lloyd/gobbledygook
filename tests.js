@@ -7,12 +7,15 @@ const tests = [
     "∩O⅄ ƎɅO⅂ I" ],
   [ "%s uses Persona to sign you in!",
     "¡uı noʎ uƃıs oʇ auosɹǝԀ sǝsn %s" ],
+
   [ "Please close this window, <a %s>enable cookies</a> and try again",
     "uıaƃa ʎɹʇ pua <a %s>sǝıʞooɔ ǝʅqauǝ</a> ´ʍopuıʍ sıɥʇ ǝsoʅɔ ǝsaǝʅԀ" ],
   [ "Please close this window, <a %(cookieLink)>enable <b>super dooper %(persona)</b> cookies</a> and try again",
     "uıaƃa ʎɹʇ pua <a %(cookieLink)>sǝıʞooɔ <b>%(persona) ɹǝdoop ɹǝdns</b> ǝʅqauǝ</a> ´ʍopuıʍ sıɥʇ ǝsoʅɔ ǝsaǝʅԀ" ],
   [ "%(aWebsite) uses Persona to sign you in!",
-    "¡uı noʎ uƃıs oʇ auosɹǝԀ sǝsn %(aWebsite)" ]
+    "¡uı noʎ uƃıs oʇ auosɹǝԀ sǝsn %(aWebsite)" ],
+  [ "<strong>Persona.</strong> Simplified sign-in, built by a non-profit. <a %s>Learn more&rarr;</a>",
+    "<a %s>&rarr;ǝɹoɯ uɹaǝ⅂</a> .ʇıɟoɹd-uou a ʎq ʇʅınq ´uı-uƃıs pǝıɟıʅdɯıS <strong>.auosɹǝԀ</strong>" ]
 ];
 
 var success = 0;

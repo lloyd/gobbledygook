@@ -43,33 +43,57 @@
 // these types of markers, and is currently hardcoded to only support our style,
 // but could be generalized.
 
-
 // take a string and turn it into an array of tokens.  Tokens are:
 // 1. text: plain text chunks
 // 2. markers: untranslatable place holders %s or %(name)
 // 3. containers: like, <a> </a>. things containing text that should be translated,
 //    but the things must retain their order
 function tokenize(str) {
-  // Yeah, I'm using regular expressions to process html.  don't look at me like that.
-  // the HTML we're processing MUST be used sparingly and only when required to represent
-  // boundaries of phrases in larger sentence, where context is important to translators.
-  // so don't look at me like that.
-  var toks = str.split(/(%s|%\([^)]+\)|<[^>]+>.*<\/[^>]+>)/).filter(function(x) { return x.length != 0; } );
+  function splitHTML(str) {
+    // Yeah, I'm using regular expressions to process html.  don't look at me like that.
+    // the HTML we're processing MUST be used sparingly and only when required to represent
+    // boundaries of phrases in larger sentence, where context is important to translators.
+    // so don't look at me like that.
+    var kill = false;
+    var toks = str.split(/(<([a-zA-Z]+)(?:\s[^>]*)?>.*<\/\2>)/).filter(function(x) {
+      if (!x.length) return false;
+      if (kill) {
+        kill = false;
+        return false;
+      }
+      kill = (x[0] == '<');;
+      return true;
+    });
 
-  // yay, tokens!  now we need to process the non-text tokens
-  var toks;
-  for (var i = 0; i < toks.length; i++) {
-    // first, handle markers
-    if (toks[i][0] === '%') {
-      toks[i] = { t: 'marker', v: toks[i] };
-    } else if (toks[i][0] = '<') {
-      // NOTE: this is a greedy match.  that combined with recursion allows us to
-      // handle nested tags.
-      var m = /^(<[^>]+>)(.*)(<\/[^>]+>)$/.exec(toks[i]);
-      if (m) toks[i] = { t: 'container', b: m[1], e: m[3], v: tokenize(m[2]) };
+    // yay, tokens!  now we need to process the html tokens
+    for (var i = 0; i < toks.length; i++) {
+      if (toks[i][0] = '<') {
+        var m = /^(<[^>]*>)(.*)(<\/[^>]*>)$/.exec(toks[i]);
+        if (m) toks[i] = { t: 'container', b: m[1], e: m[3], v: splitHTML(m[2]) };
+      }
     }
-    // text tokens we just leave alone
+    return toks;
   }
+  var toks = splitHTML(str);
+
+  // now let's find markers
+  function splitMarkers(arr) {
+    for (var i = 0; i < arr.length; i++) {
+      if (typeof arr[i] === 'string') {
+        var splt = arr[i].split(/(&[a-zA-Z]+;|&#[0-9]+;|%s|%\([^)]+\))/).filter(function(x) { return x.length });
+        arr.splice(i--, 1);
+        while (splt.length) {
+          var x = splt.shift();
+          if (x[0] === '%' || x[0] === '&') x = { t: 'marker', v: x };
+          arr.splice(++i, 0, x);
+        } 
+      }
+      else {
+        splitMarkers(arr[i].v);
+      }
+    }
+  }
+  splitMarkers(toks);
 
   return toks;
 }
@@ -117,3 +141,4 @@ module.exports = function(str) {
   translateToks(toks);
   return stringify(toks);
 };
+
