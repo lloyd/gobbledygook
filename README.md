@@ -16,20 +16,16 @@ This project was inspired by the [Translate Toolkit](http://translate.sourceforg
 
 ## What's it do?
 
-This library algorithmically translates text into something can visually
-been seen to have been derived from the original text, but is also
-significantly different.
+This library can algorithmically "translate" your software.  The
+translation can be visually scanned to ensure that all user facing
+strings are properly substituted with translations.
 
-Fake translation is useful because it lets you instantly "translate"
-all of your software so you can visually scan it and ensure that all
-user facing strings are properly marked up.
-
-Our fake translation is a right-to-left representation of english.  It
-uses several unicode characters which resemble 180 degree rotated
-versions of their counterparts, and make it look like all the strings
-are upside down and backwards - you can still read it kinda, and you
-can clearly see that it's messed up (and hence, the text is properly
-being extracted).
+Our fake translation is a right-to-left, inverted representation of
+english.  It uses several unicode characters which resemble 180 degree
+rotated versions of their counterparts, and make it look like all the
+strings are upside down and backwards - you can still read it, but is 
+is very clear what text is properly translated and what is not (suggesting
+an i18n bug).
 
 Concretely, we test a couple different things at once here:
 
