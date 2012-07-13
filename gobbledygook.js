@@ -1,48 +1,5 @@
 /* lloyd|2012|http://wtfpl.org */
 
-// This file contains a persona-specific "fake translation" implementation.
-//
-// Fake translation is the process of agorithmically translating text into
-// something can visually been seen to have been derived from the original
-// text, but is also significantly different.
-//
-// Fake translation is useful because once you "translate" a portion of UI,
-// you can scan it to ensure that all user facing strings are properly
-// extracted, and that we didn't forget to mark up strings in our code anywhere.
-//
-// Our fake translation is a right-to-left representation of english, using
-// several unicode characters to represent to make it look like all the strings
-// are upside down and backwards - you can still read it kinda, and you can
-// clearly see that it's messed up (and hence, the text is properly being extracted).
-//
-// Concretely, we test a couple different things at once here:
-// 1. our rendering of R-T-L languages
-// 2. our string extraction / string markup
-// 3. our substitution system and its ability to allow translators to reposition
-//    things (like move the privacy policy before the terms and we still sub links right)
-//
-// IMPLEMENTATION DETAILS:
-//
-// This implementation supports basic HTML markup and substitution markers.
-//
-// Because we directly use very simple html in strings we expose
-// to translators, this thing has to understand very basic html.  Here's a concrete
-// example:
-//   real - Please close this window, <a %s>enable cookies</a> and try again
-//   fake - uıaƃa ʎɹʇ pua <a %s>sǝıʞooɔ ǝʅqauǝ</a> ´ʍopuıʍ sıɥʇ ǝsoʅɔ ǝsaǝʅԀ
-//
-// notice that the text within the full sentence must be inverted, however HTML
-// tags must not be.
-//
-// Positional
-//
-// We use substitution markers %s and %(name) in translatable strings as placeholders
-// where dynamically generated content (links, email addresses, website names, etc)
-// will be placed.  Needless to say, if `%(cookieLink)` is translated to
-// `)ʞuı⅂ǝıʞooɔ(%`, our substitution will be broken.  This implementation respects
-// these types of markers, and is currently hardcoded to only support our style,
-// but could be generalized.
-
 // take a string and turn it into an array of tokens.  Tokens are:
 // 1. text: plain text chunks
 // 2. markers: untranslatable place holders %s or %(name)

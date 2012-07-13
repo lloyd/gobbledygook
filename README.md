@@ -2,10 +2,56 @@
 
 [![Build Status](https://secure.travis-ci.org/lloyd/gobbledygook.png)](http://travis-ci.org/lloyd/gobbledygook)
 
-XXX: write history, overview, credits
+This project contains a node.js implementation of "fake translation",
+which makes it easier to debug the internationalization of software.
 
-##
+This project was inspired by the [Translate Toolkit](http://translate.sourceforge.net/wiki/toolkit/history).
 
+## What's it do?
+
+This library agorithmically translates text into something can visually
+been seen to have been derived from the original text, but is also
+significantly different.
+
+Fake translation is useful because it lets you instantly "translate"
+all of your software so you can visually scan it and ensure that all
+user facing strings are properly marked up.
+
+Our fake translation is a right-to-left representation of english.  It
+uses several unicode characters which resemble 180 degree rotated
+versions of their counterparts, and make it look like all the strings
+are upside down and backwards - you can still read it kinda, and you
+can clearly see that it's messed up (and hence, the text is properly
+being extracted).
+
+Concretely, we test a couple different things at once here:
+
+  1. rendering of R-T-L languages
+  2. string extraction / string markup
+  3. the substitution system and its ability to allow translators to reposition
+     things (like move the privacy policy before the terms and we still sub links right)
+
+## Details
+
+This implementation supports basic HTML markup, HTML entities, and substitution markers.
+
+Because we directly use very simple html in strings we expose
+to translators, this thing has to understand very basic html.  Here's a concrete
+example:
+
+  * **real** - Please close this window, <a %s>enable cookies</a> and try again
+  * **fake** - uıaƃa ʎɹʇ pua <a %s>sǝıʞooɔ ǝʅqauǝ</a> ´ʍopuıʍ sıɥʇ ǝsoʅɔ ǝsaǝʅԀ
+
+notice that the text within the full sentence must be inverted, however HTML
+tags must not be.
+
+This implementation handles substitution markers such as `%s` and
+`%(name)` in translatable strings as placeholders where dynamically
+generated content (links, email addresses, website names, etc) will be
+placed.  Needless to say, if `%(cookieLink)` is translated to
+`)ʞuı⅂ǝıʞooɔ(%`, substitution will be broken.  This implementation
+respects these types of markers, and is currently hardcoded to only
+this style of substitution marker, but could be generalized.
 
 ## license
 
