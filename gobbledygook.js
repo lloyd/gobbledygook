@@ -28,7 +28,7 @@
       // boundaries of phrases in larger sentence, where context is important to translators.
       // so don't look at me like that.
       var kill = false;
-      var toks = resplit(str, /(<([a-zA-Z]+)(?:\s[^>]*)?>.*<\/\2>)/g);
+      var toks = resplit(str, /(<([a-zA-Z]+)(?:\s[^>]*)?>.*?<\/\2>)/g);
 
       // yay, tokens!  now we need to process the html tokens
       for (var i = 0; i < toks.length; i++) {

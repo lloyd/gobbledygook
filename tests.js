@@ -15,7 +15,9 @@ const tests = [
   [ "%(aWebsite) uses Persona to sign you in!",
     "¡uı noʎ uƃıs oʇ auosɹǝԀ sǝsn %(aWebsite)" ],
   [ "<strong>Persona.</strong> Simplified sign-in, built by a non-profit. <a %s>Learn more&rarr;</a>",
-    "<a %s>&rarr;ǝɹoɯ uɹaǝ⅂</a> .ʇıɟoɹd-uou a ʎq ʇʅınq ´uı-uƃıs pǝıɟıʅdɯıS <strong>.auosɹǝԀ</strong>" ]
+    "<a %s>&rarr;ǝɹoɯ uɹaǝ⅂</a> .ʇıɟoɹd-uou a ʎq ʇʅınq ´uı-uƃıs pǝıɟıʅdɯıS <strong>.auosɹǝԀ</strong>" ],
+  [ "By proceeding, you agree to %(site)'s <a %(terms)>Terms</a> and <a %(privacy)>Privacy Policy</a>.",
+    ".<a %(privacy)>ʎɔıʅoԀ ʎɔaʌıɹԀ</a> pua <a %(terms)>sɯɹǝ⊥</a> s,%(site) oʇ ǝǝɹƃa noʎ ´ƃuıpǝǝɔoɹd ʎԐ" ]
 ];
 
 var success = 0;
