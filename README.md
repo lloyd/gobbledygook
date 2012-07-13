@@ -16,7 +16,7 @@ This project was inspired by the [Translate Toolkit](http://translate.sourceforg
 
 ## What's it do?
 
-This library agorithmically translates text into something can visually
+This library algorithmically translates text into something can visually
 been seen to have been derived from the original text, but is also
 significantly different.
 
