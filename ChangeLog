@@ -1,3 +1,6 @@
+v0.0.3 -
+  * teensy tinsy HTML handling improvments
+
 v0.0.2 -
   * improved HTML parsing
   * does not corrupt HTML entities now
