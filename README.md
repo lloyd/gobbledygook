@@ -7,6 +7,13 @@ which makes it easier to debug the internationalization of software.
 
 This project was inspired by the [Translate Toolkit](http://translate.sourceforge.net/wiki/toolkit/history).
 
+## Usage
+
+    npm install gobbledygook
+    $ node
+    > require('gobbledygook')('Hello World!');
+    '¡pʅɹoＭ oʅʅǝH'
+
 ## What's it do?
 
 This library agorithmically translates text into something can visually
@@ -31,7 +38,7 @@ Concretely, we test a couple different things at once here:
   3. the substitution system and its ability to allow translators to reposition
      things (like move the privacy policy before the terms and we still sub links right)
 
-## Details
+## Some details
 
 This implementation supports basic HTML markup, HTML entities, and substitution markers.
 
@@ -53,6 +60,6 @@ placed.  Needless to say, if `%(cookieLink)` is translated to
 respects these types of markers, and is currently hardcoded to only
 this style of substitution marker, but could be generalized.
 
-## license
+## The license
 
 http://wtfpl.org
