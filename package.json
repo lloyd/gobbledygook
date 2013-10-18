@@ -14,5 +14,10 @@
   },
   "scripts": {
     "test": "node tests"
+  },
+  "bugs": "https://github.com/lloyd/gobbledygook/issues",
+  "licenses": {
+    "type": "WTFPL",
+    "url": "http://wtfpl.org/"
   }
 }
